@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjw.dao.UserMapper">
+    <resultMap id="baseResultMap" type="com.xjw.pojo.User">
+        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    </resultMap>
+    <select id="listUsers" resultMap="baseResultMap">
+        select * from t_user
+    </select>
+
+    <select id="selectMaxUserId" resultType="Integer">
+        select max(userId) from t_user
+    </select>
+
+    <insert id="addUser" parameterType="com.xjw.pojo.User">
+        insert into t_user (userId,user_name,passwd) values (#{userId,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR},#{passwd,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateUser" parameterType="com.xjw.pojo.User">
+        update t_user t set t.user_name = #{userName} ,t.passwd=#{passwd} where t.userId= #{userId}
+    </update>
+
+    <delete id="delUser">
+        delete from t_user  where userId = #{userId}
+    </delete>
+</mapper>
