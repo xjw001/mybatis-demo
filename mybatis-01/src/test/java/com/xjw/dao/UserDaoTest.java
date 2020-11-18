@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class UserDaoTest {
@@ -23,8 +24,8 @@ public class UserDaoTest {
     public void queryList(){
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> users = mapper.listUsers();
-        for (User u : users){
-            System.out.println(u.toString());
+        for (User user : users) {
+            System.out.println(user.toString());
         }
     }
 
